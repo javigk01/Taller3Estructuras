@@ -31,7 +31,7 @@
 // #include "arbolAVL.h"
 
 // TODO #07: Incluir cabecera de la STL correspondiente al árbol rojinegro
-#include "ArbolRN.h";
+#include "ArbolRN.h"
 
 // TODO #13: Incluir cabecera de la STL correspondiente al montículo
 

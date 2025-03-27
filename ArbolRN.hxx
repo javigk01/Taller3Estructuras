@@ -2,7 +2,7 @@
 #define ARBOLRN_HXX
 
 #include <iostream>
-#include "ArbolRN.h";
+#include "ArbolRN.h"
 
 template <typename T>
 ArbolRN<T>::ArbolRN() {}
