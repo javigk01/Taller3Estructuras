@@ -13,12 +13,19 @@
 #include <fstream>
 #include <string>
 #include <list>
+#include <set>
+#include <queue>
+
 // TODO #01: Incluir cabecera de la implementación propia del árbol AVL
 #include "ArbolAVL.h"
+// TODO #13: Incluir cabecera de la STL correspondiente al montículo
+#include "Monticulo.h"
 
 typedef std::list<std::string> TList;
 // TODO #02: Definir árbol AVL de tipo std::string
 typedef ArbolAVL<std::string> TAVL;
+// TODO #14: Definir Montículo de tipo std::string
+typedef Monticulo<std::string, std::greater<std::string>> TMonticulo;
 
 template <class TArbol>
 bool LeerArbol(TArbol &arbol, const std::string &nomArch);
@@ -30,32 +37,49 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    // Declarar árbol AVL
-    // TODO #03: Definir variable tipo árbol AVL.
+    // ========== PARTE 1: ÁRBOL AVL ==========
     TAVL miArbolAVL;
 
-    // Medir tiempo de llenado
-    std::clock_t inicio = std::clock();
-    // TODO #04: Usar el archivo para llenar el árbol AVL a través del uso de la función genérica provista para ello.
-    bool exito = LeerArbol(miArbolAVL, argv[1]);
-    std::clock_t fin = std::clock();
+    std::clock_t inicioAVL = std::clock();
+    bool exitoAVL = LeerArbol(miArbolAVL, argv[1]);
+    std::clock_t finAVL = std::clock();
     
-    double tiempo = (fin - inicio) / double(CLOCKS_PER_SEC);
+    double tiempoAVL = (finAVL - inicioAVL) / double(CLOCKS_PER_SEC);
 
-    // Mostrar resultados
-    if (exito) {
-     // TODO #05: Informar tiempo de llenado del árbol AVL dado que la ejecución de la función de llenado sea exitosa.
-        std::cout << "Tiempo de llenado AVL: " << tiempo << " segundos" << std::endl;
+    if (exitoAVL) {
+        std::cout << "Tiempo de llenado AVL: " << tiempoAVL << " segundos" << std::endl;
     } else {
-        std::cout << "Error al leer el archivo" << std::endl;
+        std::cout << "Error al leer el archivo para AVL" << std::endl;
         return -1;
     }
 
-// Generar recorrido inorden
-TList inorden;
-// TODO #06: Llamar la función que genera el recorrido en inorden del árbol AVL y lo guarda en una lista dada como parámetro. 
-miArbolAVL.inordenLista(inorden);
-std::cout << "Elementos en arbol AVL: " << inorden.size() << std::endl;
+    TList inordenAVL;
+    miArbolAVL.inordenLista(inordenAVL);
+    std::cout << "Elementos en arbol AVL: " << inordenAVL.size() << std::endl;
+
+    // ========== PARTE 3: MONTÍCULO ==========
+    // TODO #15: Definir variable tipo Montículo.
+    TMonticulo miMonticulo;
+
+    std::clock_t inicioHeap = std::clock();
+    // TODO #16: Usar el archivo para llenar el montículo
+    bool exitoHeap = LeerArbol(miMonticulo, argv[1]);
+    std::clock_t finHeap = std::clock();
+    
+    double tiempoHeap = (finHeap - inicioHeap) / double(CLOCKS_PER_SEC);
+
+    // TODO #17: Informar tiempo de llenado del montículo
+    if (exitoHeap) {
+        std::cout << "\nTiempo de llenado Monticulo: " << tiempoHeap << " segundos" << std::endl;
+    } else {
+        std::cout << "\nError al leer el archivo para Monticulo" << std::endl;
+        return -1;
+    }
+
+    TList inordenHeap;
+    // TODO #18: Llamar la función que genera el recorrido en inorden del montículo
+    miMonticulo.inordenLista(inordenHeap);
+    std::cout << "Elementos en monticulo: " << inordenHeap.size() << std::endl;
 
     return 0;
 }
