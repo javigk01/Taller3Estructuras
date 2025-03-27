@@ -1,23 +1,23 @@
-#ifndef REDBLACKTREE_H
-#define REDBLACKTREE_H
+#ifndef ARBOLRN_H
+#define ARBOLRN_H
 
 #include <set>
 #include <string>
 #include <list>
 
 template <typename T>
-class RedBlackTree {
+class ArbolRN {
 private:
     std::set<T> tree;
 
 public:
-    RedBlackTree();
+    ArbolRN();
     void insert(const T& value);
     void erase(const T& value);
     bool search(const T& value) const;
     void inordenEnLista(std::list<T>& lista) const;
 };
 
-#include "RedBlackTree.hxx"
+#include "ArbolRN.hxx"
 
 #endif

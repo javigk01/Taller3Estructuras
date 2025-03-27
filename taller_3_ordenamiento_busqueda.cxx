@@ -31,7 +31,7 @@
 // #include "arbolAVL.h"
 
 // TODO #07: Incluir cabecera de la STL correspondiente al árbol rojinegro
-#include "RedBlackTree.h";
+#include "ArbolRN.h";
 
 // TODO #13: Incluir cabecera de la STL correspondiente al montículo
 
@@ -46,8 +46,7 @@ typedef std::list<std::string> TList;
 // typedef arbolAVL< std::string > TAVL;
 
 // TODO #08: Definir árbol rojinegro de tipo std::string
-// TODO #08: Definir árbol rojinegro de tipo std::string
-typedef RedBlackTree<std::string> TRN;
+typedef ArbolRN<std::string> TRN;
 
 // TODO #14: Definir Montículo de tipo std::string
 // typedef std::XXXXXX< std::string > THeap;
