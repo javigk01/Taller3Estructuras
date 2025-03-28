@@ -27,7 +27,7 @@ class ArbolAVL {
     void preOrden(NodoAVL<T>* nodo);
     void inOrden();
     void inOrden(NodoAVL<T>* nodo, std::list<T>& lista);
-    void inordenLista(std::list<T>& lista);
+    void inordenEnLista(std::list<T>& lista);
     void posOrden();
     void posOrden(NodoAVL<T>* nodo);
     void nivelOrden();
@@ -43,6 +43,6 @@ class ArbolAVL {
     int factorBalance(NodoAVL<T>* nodo);
 };
 
-#include "ArbolAVL.cxx"
+#include "ArbolAVL.hxx"
 
 #endif // ARBOLAVL_H

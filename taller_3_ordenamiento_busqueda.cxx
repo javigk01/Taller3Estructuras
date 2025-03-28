@@ -28,12 +28,13 @@
   =================================
 */
 // TODO #01: Incluir cabecera de la implementación propia del árbol AVL
-// #include "arbolAVL.h"
+#include "ArbolAVL.h"
 
 // TODO #07: Incluir cabecera de la STL correspondiente al árbol rojinegro
 #include "ArbolRN.h"
 
 // TODO #13: Incluir cabecera de la STL correspondiente al montículo
+#include "Monticulo.h"
 
 /*
   ================================
@@ -43,13 +44,13 @@
 typedef std::list<std::string> TList;
 
 // TODO #02: Definir árbol AVL de tipo std::string
-// typedef arbolAVL< std::string > TAVL;
+typedef ArbolAVL< std::string > TAVL;
 
 // TODO #08: Definir árbol rojinegro de tipo std::string
 typedef ArbolRN<std::string> TRN;
 
 // TODO #14: Definir Montículo de tipo std::string
-// typedef std::XXXXXX< std::string > THeap;
+typedef Monticulo< std::string > THeap;
 
 /*
   ================================
@@ -87,6 +88,7 @@ int main(int argc, char *argv[])
 
   // Declarar variable tipo árbol AVL
   // TODO #03: Definir variable tipo árbol AVL.
+  TAVL miArbolAVL;
 
   // Declarar variable tipo árbol rojinegro
   // TODO #09: Definir variable tipo árbol rojinegro.
@@ -94,7 +96,7 @@ int main(int argc, char *argv[])
 
   // Declarar variable tipo Montículo
   // TODO #15: Definir variable tipo Montículo.
-  // XXXX miMonticulo;
+  THeap miArbolHeap;
 
   /*
     +++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -103,11 +105,10 @@ int main(int argc, char *argv[])
   */
   std::clock_t inicioLecturaAVL = std::clock();
   // TODO #04: Usar el archivo para llenar el árbol AVL a través del uso de la función genérica provista para ello.
-  // bool lecturaAVL = LeerArbol( miArbolAVL, argv[ 1 ] );
+  bool lecturaAVL = LeerArbol( miArbolAVL, argv[ 1 ] );
   std::clock_t finLecturaAVL = std::clock();
   double tiempoLecturaAVL = (finLecturaAVL - inicioLecturaAVL) / double(CLOCKS_PER_SEC);
   // TODO #05: Informar tiempo de llenado del árbol AVL dado que la ejecución de la función de llenado sea exitosa.
-  /*
      if( lecturaAVL )
      std::cout
         << "Tiempo de llenado arbol AVL = "
@@ -118,7 +119,6 @@ int main(int argc, char *argv[])
         << "Error al leer \"" << argv[ 1 ]
         << "\" para llenar el arbol AVL."
         << std::endl;
-  */
 
   /*
      +++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -127,11 +127,11 @@ int main(int argc, char *argv[])
    */
   std::clock_t inicioLecturaRN = std::clock();
   // TODO #10: Usar el archivo para llenar el árbol rojinegro a través del uso de la función genérica provista para ello.
+
   bool lecturaRN = LeerArbol(miArbolRN, argv[1]);
   std::clock_t finLecturaRN = std::clock();
   double tiempoLecturaRN = (finLecturaRN - inicioLecturaRN) / double(CLOCKS_PER_SEC);
   // TODO #11: Informar tiempo de llenado del árbol rojinegro dado que la ejecución de la función de llenado sea exitosa.
-  
     if (lecturaRN)
       std::cout
           << "Tiempo de llenado arbol RN = "
@@ -151,11 +151,10 @@ int main(int argc, char *argv[])
    */
   std::clock_t inicioLecturaHeap = std::clock();
   // TODO #16: Usar el archivo para llenar el montículo a través del uso de la función genérica provista para ello.
-  // bool lecturaHeap = LeerArbol(miArbolHeap, argv[1]);
+  bool lecturaHeap = LeerArbol(miArbolHeap, argv[1]);
   std::clock_t finLecturaHeap = std::clock();
   double tiempoLecturaHeap = (finLecturaHeap - inicioLecturaHeap) / double(CLOCKS_PER_SEC);
   // TODO #17: Informar tiempo de llenado del montículo dado que la ejecución de la función de llenado sea exitosa.
-  /*
     if (lecturaHeap)
       std::cout
           << "Tiempo de llenado montículo = "
@@ -166,7 +165,6 @@ int main(int argc, char *argv[])
           << "Error al leer \"" << argv[1]
           << "\" para llenar el montículo."
           << std::endl;
-  */
 
   /*
     =============================================
@@ -176,13 +174,13 @@ int main(int argc, char *argv[])
   // Obtener el recorrido en inorden del arbol AVL
   TList inordenAVL, inordenRN, inordenHeap;
   // TODO #06: Llamar la función que genera el recorrido en inorden del árbol AVL y lo guarda en una lista dada como parámetro.
-  // miArbolAVL.inordenEnLista( inordenAVL );
+  miArbolAVL.inordenEnLista( inordenAVL );
 
   // TODO #12: Llamar la función que genera el recorrido en inorden del árbol rojinegro y lo guarda en una lista dada como parámetro.
   miArbolRN.inordenEnLista( inordenRN );
 
   // TODO #18: Llamar la función que genera el recorrido en inorden del montículo y lo guarda en una lista dada como parámetro.
-  // miMonticulo.inordenEnLista( inordenHeap );
+  miArbolHeap.inordenEnLista( inordenHeap );
 
   /*
     ===============================================================
@@ -222,13 +220,31 @@ int main(int argc, char *argv[])
     ===============================================================
   */
   // TODO #19: Crear iteradores para recorrer cada una de las estructuras lineales 
+  std::list<std::string>::iterator itAVL = inordenAVL.begin();
+  std::list<std::string>::iterator itRN = inordenRN.begin();
+  std::list<std::string>::iterator itHeap = inordenHeap.begin();
   
   // TODO #20: Recorrer las estructuras lineales y comparar elemento a elemento la igualdad o desigualdad
+  bool sonIguales = true;
+  while (itAVL != inordenAVL.end() && itRN != inordenRN.end() && itHeap != inordenHeap.end()) {
+      if (*itAVL != *itRN || *itRN != *itHeap) {
+          sonIguales = false;
+          break;
+      }
+      ++itAVL;
+      ++itRN;
+      ++itHeap;
+  }
 
   // TODO #21: Informar si los árboles coinciden en la totalidad de los elementos teniendo en cuenta su posición
+  if (sonIguales && (inordenAVL.size() == inordenRN.size() && inordenRN.size() == inordenHeap.size())) {
+    std::cout << "Los árboles coinciden en la totalidad de los elementos y su posición." << std::endl;
+  } else {
+    std::cout << "Los árboles NO coinciden en la totalidad de los elementos o en su posición." << std::endl;
+  }
 
-  return (0);
-}
+    return (0);
+  }
 
 /*
   ===============================================================
@@ -251,9 +267,9 @@ bool LeerArbol(TArbol &arbol, const std::string &nomArch)
     std::string codigo, valor;
     entrada >> codigo >> valor;
     if (codigo == "add")
-      arbol.insert(valor); // El arbol debe proveer el metodo "insert"
+      arbol.insertar(valor); // El arbol debe proveer el metodo "insert"
     else if (codigo == "del")
-      arbol.erase(valor); // El arbol debo proveer el metodo "erase"
+      arbol.eliminar(valor); // El arbol debo proveer el metodo "erase"
 
   } // End while
   // Cerrar el archivo

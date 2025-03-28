@@ -12,9 +12,9 @@ private:
 
 public:
     ArbolRN();
-    void insert(const T& value);
-    void erase(const T& value);
-    bool search(const T& value) const;
+    void insertar(const T& value);
+    void eliminar(const T& value);
+    bool buscar(const T& value) const;
     void inordenEnLista(std::list<T>& lista) const;
 };
 

@@ -1,5 +1,7 @@
 #include "Monticulo.h"
 
+
+
 template<class T, class Compare>
 void Monticulo<T, Compare>::heapifyUp(size_t indice) {
     while (indice > 0) {
@@ -69,7 +71,7 @@ bool Monticulo<T, Compare>::buscar(const T& valor) const {
 }
 
 template<class T, class Compare>
-void Monticulo<T, Compare>::inordenLista(std::list<T>& lista) const {
+void Monticulo<T, Compare>::inordenEnLista(std::list<T>& lista) const {
     // Copiar los datos para no modificar el heap original
     std::vector<T> copia = datos;
     std::sort(copia.begin(), copia.end());

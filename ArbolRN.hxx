@@ -8,17 +8,17 @@ template <typename T>
 ArbolRN<T>::ArbolRN() {}
 
 template <typename T>
-void ArbolRN<T>::insert(const T& value) {
+void ArbolRN<T>::insertar(const T& value) {
     tree.insert(value);
 }
 
 template <typename T>
-void ArbolRN<T>::erase(const T& value) {
+void ArbolRN<T>::eliminar(const T& value) {
     tree.erase(value);
 }
 
 template <typename T>
-bool ArbolRN<T>::search(const T& value) const {
+bool ArbolRN<T>::buscar(const T& value) const {
     return tree.find(value) != tree.end();
 }
 

@@ -224,7 +224,7 @@ void ArbolAVL<T>::inOrden(NodoAVL<T>* nodo, std::list<T>& lista) {
 }
 
 template<class T>
-void ArbolAVL<T>::inordenLista(std::list<T>& lista) {
+void ArbolAVL<T>::inordenEnLista(std::list<T>& lista) {
     inOrden(raiz, lista);
 }
 
