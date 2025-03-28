@@ -1,7 +1,5 @@
 #include "Monticulo.h"
 
-
-
 template<class T, class Compare>
 void Monticulo<T, Compare>::heapifyUp(size_t indice) {
     while (indice > 0) {
@@ -44,8 +42,10 @@ void Monticulo<T, Compare>::heapifyDown(size_t indice) {
 
 template<class T, class Compare>
 void Monticulo<T, Compare>::insertar(const T& valor) {
-    datos.push_back(valor);
-    heapifyUp(datos.size() - 1);
+    if (elementos.insert(valor).second) { 
+        datos.push_back(valor);
+        heapifyUp(datos.size() - 1);
+    }
 }
 
 template<class T, class Compare>
@@ -55,7 +55,8 @@ bool Monticulo<T, Compare>::eliminar(const T& valor) {
     
     *it = datos.back();
     datos.pop_back();
-    
+    elementos.erase(valor); // También eliminar del set
+
     if (!datos.empty()) {
         size_t indice = it - datos.begin();
         heapifyDown(indice);
@@ -67,12 +68,11 @@ bool Monticulo<T, Compare>::eliminar(const T& valor) {
 
 template<class T, class Compare>
 bool Monticulo<T, Compare>::buscar(const T& valor) const {
-    return std::find(datos.begin(), datos.end(), valor) != datos.end();
+    return elementos.count(valor) > 0; // O(1) en promedio
 }
 
 template<class T, class Compare>
 void Monticulo<T, Compare>::inordenEnLista(std::list<T>& lista) const {
-    // Copiar los datos para no modificar el heap original
     std::vector<T> copia = datos;
     std::sort(copia.begin(), copia.end());
     lista.assign(copia.begin(), copia.end());
