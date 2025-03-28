@@ -27,6 +27,6 @@ class NodoAVL {
     void actualizarAltura();
 };
 
-#include "NodoAVL.cxx"
+#include "NodoAVL.hxx"
 
 #endif // NODOAVL_H
