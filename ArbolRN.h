@@ -2,7 +2,6 @@
 #define ARBOLRN_H
 
 #include <set>
-#include <string>
 #include <list>
 
 template <typename T>
@@ -12,10 +11,10 @@ private:
 
 public:
     ArbolRN();
-    void insertar(const T& value);
-    void eliminar(const T& value);
-    bool buscar(const T& value) const;
-    void inordenEnLista(std::list<T>& lista) const;
+    void insertar(T value);
+    void eliminar(T value);
+    bool buscar(T value);
+    void inordenEnLista(std::list<T>& lista);
 };
 
 #include "ArbolRN.hxx"
